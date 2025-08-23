@@ -1,8 +1,11 @@
 import Header from "./components/Header";
 import Main from "./components/Main";
-import Archive from "./components/Archive";
 import Footer from "./components/Footer";
 import DarkButton from "./components/DarkButton";
+import { lazy, Suspense } from "react";
+
+// import Archive from "./components/Archive";
+const Archive = lazy(() => import("./components/Archive"));
 
 function App() {
   return (
@@ -10,7 +13,9 @@ function App() {
       <DarkButton />
       <Header />
       <Main />
-      <Archive />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Archive />
+      </Suspense>
       <Footer />
     </section>
   );
